@@ -108,4 +108,8 @@ public class DataSets {
 			d.printData();
 		}
 	}
+	
+	public int length(){
+		return dataSets.size();
+	}
 }
