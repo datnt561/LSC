@@ -1,33 +1,35 @@
 package naiveBayes;
 
-import processData.Data;
-import processData.DataSets;
+import data.Document;
+import launch.DataSets;
 
 public class NaiveBayesClassification {
 	private DataSets data;
-	private Label[] classLabel;
+	private Label posLabel;
+	private Label negLabel;
 	
 	public NaiveBayesClassification(DataSets data){
 		this.data = data;
 	}
 	
 	// tinh so lop tu du lieu
-	public void computeProbabilityLabels(){
-		try{
-			double count = 0;
-			for(Data d : data){
-				if(d.isLabel())
-					count++;
-			}
-			if(count == 0){
-				count = 0.00001;
-			}
-			classLabel = new Label[2];
-			classLabel[0].label = "true";
-			classLabel[0].probability = count / data.length();
-			
-			
-		}
+	public void computeProbabilityPOS(){
+		posLabel.label = "POS";
+		negLabel.label = "NEG";
+		
+		int lengthDocumentPOS = data.fiterByLabelPOS().size();
+		int lengthDocumentNEG = data.fiterByLabelNEG().size();
+		
+		posLabel.probability = (double)lengthDocumentPOS/data.length();
+		negLabel.probability = (double)lengthDocumentNEG/data.length();
+		
+	}
+	
+	public double computeProbabilityWord(double lamda, int sizeVoca, String word, String label){
+		
+		double probabiWord;
+		probabiWord = (lamda + data.countWordInClass(word, label))/(lamda*sizeVoca );
+		return probabiWord;
 	}
 
 }

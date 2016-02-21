@@ -1,14 +1,19 @@
 package launch;
 
-import processData.DataSets;
+import data.BinaryDataSets;
+import data.DataSets;
+import data.NameDomains;
 
 public class MainEntry {
 
 	public static void main(String[] args) {
 		
-		DataSets dataSets = new DataSets();
-		dataSets.readFileDataSet("ACL2015-Chen-Datasets/AlarmClock.txt");
+		DataSets dataSets = new BinaryDataSets("ACL2015-Chen-Datasets/");
+		
 		dataSets.printDataSets();
+		
+//		NameDomains domains = new NameDomains("ACL2015-Chen-Datasets/");
+//		System.out.println(domains.getDomains());
 
 	}
 
