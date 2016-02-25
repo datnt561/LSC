@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public interface DataSets {
 	
@@ -9,5 +10,9 @@ public interface DataSets {
 	public ArrayList<Document> fiterDocumentByLabel(String domain, String label);
 
 	public void printDataSets();
+
+	public void printDataSetsByDomain(String string);
+
+	public HashSet<String> createVoca(String string);
 	
 }

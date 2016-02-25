@@ -1,12 +1,16 @@
 package data;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 public class BinaryDataSets implements DataSets {
 	private HashMap<String, ArrayList<Document>> dataSets;
@@ -43,7 +47,7 @@ public class BinaryDataSets implements DataSets {
 					if (line.contains("Domain") && line.contains("Label")) {
 					} else {
 						document = this.splitLineData(line);
-						document.printData();
+						// document.printData();
 						data.add(document);
 					}
 
@@ -90,11 +94,57 @@ public class BinaryDataSets implements DataSets {
 
 	public void printDataSets() {
 		for (Map.Entry<String, ArrayList<Document>> m : this.dataSets.entrySet()) {
-			System.out.println("Domain :" + m.getKey());
+			System.out.println("Domain : " + m.getKey());
 			for (Document d : m.getValue()) {
 				d.printData();
 			}
 		}
+	}
+
+	public void printDataSetsByDomain(String domain) {
+		ArrayList<Document> data = this.dataSets.get(domain);
+		System.out.println("Domain is " + domain);
+		int i = 0;
+		for (Document d : data) {
+			System.out.println(i);
+			i++;
+			d.printData();
+		}
+
+	}
+
+	public HashMap<String, ArrayList<Document>> getDataSets() {
+		return dataSets;
+	}
+
+	public HashSet<String> createVoca(String domain){
+		HashSet<String> voca = new HashSet<String>();
+		ArrayList<Document> reviews = dataSets.get(domain);
+		String[] words;
+		for(Document d : reviews){
+			words = d.getReview().split("[^.a-zA-Z\\d]");
+			for(String w : words)
+				if(!w.isEmpty()&& w.length() > 2 && !containsDigit(w))
+						voca.add(w);
+		}
+		
+		return voca;
+		
+		
+	}
+	
+	public final boolean containsDigit(String s){  
+	    boolean containsDigit = false;
+
+	    if(s != null && !s.isEmpty()){
+	        for(char c : s.toCharArray()){
+	            if(containsDigit = Character.isDigit(c)){
+	                break;
+	            }
+	        }
+	    }
+
+	    return containsDigit;
 	}
 
 }
