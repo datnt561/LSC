@@ -1,7 +1,6 @@
 package data;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+
+import Util.Utility;
 
 public class BinaryDataSets implements DataSets {
 	private HashMap<String, ArrayList<Document>> dataSets;
@@ -117,34 +116,20 @@ public class BinaryDataSets implements DataSets {
 		return dataSets;
 	}
 
-	public HashSet<String> createVoca(String domain){
+	public HashSet<String> createVocaByLabel(String domain, String label) {
 		HashSet<String> voca = new HashSet<String>();
 		ArrayList<Document> reviews = dataSets.get(domain);
-		String[] words;
-		for(Document d : reviews){
-			words = d.getReview().split("[^.a-zA-Z\\d]");
-			for(String w : words)
-				if(!w.isEmpty()&& w.length() > 2 && !containsDigit(w))
-						voca.add(w);
+		ArrayList<String> words;
+		for (Document d : reviews) {
+			if (d.getLabel().equals(label)) {
+				words = Utility.splitReviewtoWords(d.getReview());
+				for (String w : words)
+					voca.add(w);
+			}
 		}
-		
+
 		return voca;
-		
-		
-	}
-	
-	public final boolean containsDigit(String s){  
-	    boolean containsDigit = false;
 
-	    if(s != null && !s.isEmpty()){
-	        for(char c : s.toCharArray()){
-	            if(containsDigit = Character.isDigit(c)){
-	                break;
-	            }
-	        }
-	    }
-
-	    return containsDigit;
 	}
 
 }

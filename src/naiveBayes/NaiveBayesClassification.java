@@ -8,6 +8,7 @@ public class NaiveBayesClassification {
 	private Label posLabel;
 	private Label negLabel;
 	
+	
 	public NaiveBayesClassification(DataSets data){
 		this.data = data;
 	}
