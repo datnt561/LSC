@@ -3,6 +3,7 @@ package naiveBayes;
 import java.util.ArrayList;
 
 import data.DataSets;
+import data.Document;
 
 public class Vocabulary {
 	ArrayList<Word> vocaPOS;
@@ -25,6 +26,8 @@ public class Vocabulary {
 	}
 
 	public Vocabulary(DataSets dataSets, String domain){
+		ArrayList<Document> reviewsPOS = dataSets.fiterDocumentByLabel(domain, "POS");
+		ArrayList<Document> reviewsNEG = dataSets.fiterDocumentByLabel(domain, "NEG");
 		
 	}
 
