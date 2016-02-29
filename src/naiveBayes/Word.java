@@ -46,16 +46,9 @@ public class Word {
 	public void setTimeInNEG(int timeInNEG) {
 		this.timeInNEG = timeInNEG;
 	}
+	
+	public void printWord(){
+		System.out.println("Word : " + word + " POS : " +  timeInPOS + " NEG : " + timeInNEG);
+	}
 
-	public int countWordInLabel(String domain, String label){
-		return 0;
-	}
-	
-	public double computeProPOS(String domain){
-		return 0;
-	}
-	
-	public double computeProNEG(String domain){
-		return 0;
-	}
 }

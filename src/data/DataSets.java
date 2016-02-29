@@ -13,7 +13,7 @@ public interface DataSets {
 
 	public void printDataSetsByDomain(String string);
 
-	public HashSet<String> createVocaByLabel(String string, String string2);
+	public ArrayList<String> listWordsByLabel(String string, String string2);
 
 	
 

@@ -1,6 +1,9 @@
 package Util;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Utility {
 	public static final boolean containsDigit(String s) {
@@ -40,5 +43,27 @@ public class Utility {
 		}
 		return words;
 
+	}
+
+	public static int countWordInList(String word, ArrayList<String> listWord) {
+
+		return Collections.frequency(listWord, word);
+	}
+	
+	public static void writerListWordToFile(ArrayList<String> listWords, String nameFile){
+		
+		FileWriter writer;
+		try {
+			writer = new FileWriter(nameFile);
+			for(String str: listWords) {
+				  writer.write(str);
+				  writer.write("\n");
+				}
+				writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 	}
 }

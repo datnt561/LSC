@@ -116,8 +116,8 @@ public class BinaryDataSets implements DataSets {
 		return dataSets;
 	}
 
-	public HashSet<String> createVocaByLabel(String domain, String label) {
-		HashSet<String> voca = new HashSet<String>();
+	public ArrayList<String> listWordsByLabel(String domain, String label) {
+		ArrayList<String> voca = new ArrayList<String>();
 		ArrayList<Document> reviews = dataSets.get(domain);
 		ArrayList<String> words;
 		for (Document d : reviews) {
