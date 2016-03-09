@@ -1,7 +1,26 @@
 package naiveBayes;
 
 public class Label {
-	String label;
-	double probability;
+	private String label;
+	private double probability;
+	
+	
+	public Label(String label) {
+		super();
+		this.label = label;
+	}
+	
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public double getProbability() {
+		return probability;
+	}
+	public void setProbability(double probability) {
+		this.probability = probability;
+	}
 
 }

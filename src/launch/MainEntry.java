@@ -1,8 +1,8 @@
 package launch;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
+import Util.Utility;
 import data.BinaryDataSets;
 import data.DataSets;
 import naiveBayes.Vocabulary;
@@ -24,9 +24,12 @@ public class MainEntry {
 		
 		Vocabulary voca = new Vocabulary(dataSets, "AlarmClock.txt");
 		voca.printVoca();
+		voca.computeProbabilityVoca(0.5);
 		//System.out.println(setWords);
 		
-		voca.writeVocaToFile("Voca.txt");
+		voca.writeVocaToFile("Voca123.txt");
+		
+		System.out.println(Utility.decimalFormat(034.3273234, 2));
 	}
 
 }

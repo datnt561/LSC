@@ -1,34 +1,48 @@
 package naiveBayes;
 
+import java.util.ArrayList;
+
+import data.DataSets;
+import data.DocumentPridict;
 
 public class NaiveBayesClassification {
-//	private DataSets data;
-//	private Label posLabel;
-//	private Label negLabel;
-//	
-//	
-//	public NaiveBayesClassification(DataSets data){
-//		this.data = data;
-//	}
-//	
-//	// tinh so lop tu du lieu
-//	public void computeProbabilityPOS(){
-//		posLabel.label = "POS";
-//		negLabel.label = "NEG";
-//		
-//		int lengthDocumentPOS = data.fiterByLabelPOS().size();
-//		int lengthDocumentNEG = data.fiterByLabelNEG().size();
-//		
-//		posLabel.probability = (double)lengthDocumentPOS/data.length();
-//		negLabel.probability = (double)lengthDocumentNEG/data.length();
-//		
-//	}
-//	
-//	public double computeProbabilityWord(double lamda, int sizeVoca, String word, String label){
-//		
-//		double probabiWord;
-//		probabiWord = (lamda + data.countWordInClass(word, label))/(lamda*sizeVoca );
-//		return probabiWord;
-//	}
+	Vocabulary voca;
+	
+	ArrayList<DocumentPridict> listDocumentPridict;
+
+	public double probabilitiReview(String label, String review) {
+		ArrayList<String> listWords = Util.Utility.splitReviewtoWords(review);
+		double probabi = 1;
+		Word w;
+		for (String s : listWords) {
+			w = voca.searchWord(s);
+
+			if (label.equals("POS")) {
+				probabi *= w.getProPOS();
+			} else {
+				probabi *= w.getProNEG();
+			}
+		}
+		if (label.equals("POS"))
+			probabi *= voca.getPos().getProbability();
+		else
+			probabi *= voca.getNeg().getProbability();
+		return probabi;
+	}
+	
+	public void buildModel(ArrayList<Document> dataSets, String domain, double lamda) {
+		voca = new Vocabulary(dataSets, domain);
+		voca.computeProbabilityVoca(lamda);
+
+	}
+
+	public boolean isLableOfDocument(String review) {
+		boolean lable = false;
+		double proPos = probabilitiReview("POS", review);
+		double proNeg = probabilitiReview("NEG", review);
+		if (proPos > proNeg)
+			lable = true;
+		return lable;
+	}
 
 }

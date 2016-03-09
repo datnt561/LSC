@@ -99,7 +99,10 @@ public class BinaryDataSets implements DataSets {
 			}
 		}
 	}
-
+	public ArrayList<Document> getDataByLable(String domain){
+		ArrayList<Document> data = this.dataSets.get(domain);
+		return data;
+	}
 	public void printDataSetsByDomain(String domain) {
 		ArrayList<Document> data = this.dataSets.get(domain);
 		System.out.println("Domain is " + domain);
